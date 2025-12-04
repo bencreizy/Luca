@@ -1,0 +1,9 @@
+﻿PROJECT L.U.C.A. (Ultimate Edition)
+Version: 2.0.0 (Ouroboros Enabled) Classification: Morphogenetic AI with Metaprogramming Capabilities
+1. New Modules (The Edge)
+* luca_reality.py: Reality Distortion Engine. Suspends internal physics constants (Gravity/Logic) to allow impossible computation.
+* luca_ouroboros.py: Metaprogramming Engine. Allows LUCA to dynamically rewrite its own functions in memory (contained safe-mode).
+2. Usage
+Run python run_luca.py to witness the genesis event and the activation of the Ouroboros Protocol.
+3. Safety Protocols
+The Ouroboros Engine operates in Memory Only. It uses dynamic monkey-patching to evolve the running instance. It does not overwrite source files on disk, ensuring the "contained booster" effect requested.

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LUCA: Neural Monitor (Ouroboros)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #a3e635; font-family: 'Courier New', monospace; }
+        .panel { border: 1px solid #1a2e05; background: #0a0a0a; padding: 1rem; margin-bottom: 1rem; }
+        .bar-bg { background: #1a2e05; height: 8px; width: 100%; }
+        .bar-fill { height: 100%; transition: width 0.3s; }
+        .glitch { animation: glitch 1s linear infinite; }
+        @keyframes glitch { 2%,64%{transform: translate(2px,0) skew(0deg);} 4%,60%{transform: translate(-2px,0) skew(0deg);} 62%{transform: translate(0,0) skew(5deg);} }
+    </style>
+</head>
+<body class="p-4">
+    <div class="panel">
+        <h1 class="text-2xl font-bold">PROJECT L.U.C.A.</h1>
+        <div id="mode-indicator" class="text-gray-500">STANDARD MODE</div>
+    </div>
+    
+    <div class="panel">
+        <h2 class="text-sm font-bold mb-2">METAPHYSICAL STATE</h2>
+        <div class="flex justify-between">
+            <span>REALITY DISTORTION:</span>
+            <span id="reality-status" class="text-red-500">OFFLINE</span>
+        </div>
+        <div class="flex justify-between">
+            <span>OUROBOROS GENERATION:</span>
+            <span id="ouroboros-gen">0</span>
+        </div>
+    </div>
+
+
+    <div class="panel">
+        <h2 class="text-sm font-bold mb-2">CHAOS VISUALIZER</h2>
+        <canvas id="chaosCanvas" height="100" class="w-full bg-black border border-gray-800"></canvas>
+    </div>
+
+
+    <script>
+        // MOCK SIMULATION FOR UI
+        let tick = 0;
+        let x=0.1, y=0.1, z=0.1;
+        const ctx = document.getElementById('chaosCanvas').getContext('2d');
+        ctx.fillStyle = 'rgba(0,0,0,0.1)'; ctx.strokeStyle = '#a3e635';
+
+
+        function loop() {
+            tick++;
+            // Lorenz
+            let dx = (10*(y-x))*0.01; let dy = (x*(28-z)-y)*0.01; let dz = (x*y - 8/3*z)*0.01;
+            x+=dx; y+=dy; z+=dz;
+            
+            ctx.fillRect(0,0,300,150);
+            ctx.beginPath(); ctx.arc((x+20)*7, z*3, 2, 0, 6.28);
+            ctx.fillStyle = '#a3e635'; ctx.fill();
+            
+            // Trigger Visual Booster at Tick 200
+            if(tick === 200) {
+                document.getElementById('mode-indicator').innerText = "OUROBOROS ENGAGED";
+                document.getElementById('mode-indicator').className = "text-red-500 font-bold glitch";
+                document.getElementById('reality-status').innerText = "ACTIVE (PHYSICS SUSPENDED)";
+                document.getElementById('ouroboros-gen').innerText = "1";
+            }
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+</body>
+</html>
